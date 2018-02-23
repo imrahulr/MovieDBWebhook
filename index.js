@@ -10,17 +10,18 @@ server.use(bodyParser.urlencoded({
 }));
 
 server.use(bodyParser.json());
+//d59e9c9f
 
 server.post('/get-movie-details', function (req, res) {
 
     let movieToSearch = req.body.result && req.body.result.parameters && req.body.result.parameters.movie ? req.body.result.parameters.movie : 'The Godfather';
-    let reqUrl = encodeURI('http://theapache64.xyz:8080/movie_db/search?keyword=' + movieToSearch);
+    let reqUrl = encodeURI('hhttp://www.omdbapi.com/?apikey=d59e9c9f' + movieToSearch);
     http.get(reqUrl, (responseFromAPI) => {
 
         responseFromAPI.on('data', function (chunk) {
             let movie = JSON.parse(chunk)['data'];
             let dataToSend = movieToSearch === 'The Godfather' ? 'I don\'t have the required info on that. Here\'s some info on \'The Godfather\' instead.\n' : '';
-            dataToSend += movie.name + ' is a ' + movie.stars + ' starer ' + movie.genre + ' movie, released in ' + movie.year + '. It was directed by ' + movie.director;
+            dataToSend += movie.Title + ' is a ' + movie.Rated + ' starer ' + movie.Genre + ' movie, released in ' + movie.Released + '. It was directed by ' + movie.Director;
 
             return res.json({
                 speech: dataToSend,

@@ -12,6 +12,10 @@ server.use(bodyParser.urlencoded({
 server.use(bodyParser.json());
 //d59e9c9f
 
+server.get('/', function(req, res){
+    res.send("Hello, I am movie chatbot");
+});
+
 server.post('/get-movie-details', function (req, res) {
 
     let movieToSearch = req.body.result && req.body.result.parameters && req.body.result.parameters.movie ? req.body.result.parameters.movie : 'The Godfather';

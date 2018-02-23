@@ -25,7 +25,7 @@ server.post('/get-movie-details', function (req, res) {
     http.get(reqUrl, (responseFromAPI) => {
 
         responseFromAPI.on('data', function (chunk) {
-            let movie = JSON.parse(chunk)['data'];
+            let movie = JSON.parse(chunk);
             console.log("Jchunk"+chunk);
             console.log("JSOn"+movie);
             let dataToSend = movieToSearch === 'The Godfather' ? 'I don\'t have the required info on that. Here\'s some info on \'The Godfather\' instead.\n' : '';
